@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h2>Resultados del Examen</h2>
+        </div>
+        <div class="card-body">
+            <h3>Alumno: {{ alumno.nombre }} {{ alumno.apaterno }} {{ alumno.amaterno }}</h3>
+            <p class="lead">Grupo: {{ alumno.grupo }}</p>
+            
+            <div class="mt-4">
+                <h4>Resumen:</h4>
+                <ul class="list-group">
+                    <li class="list-group-item">Total de preguntas: {{ total_preguntas }}</li>
+                    <li class="list-group-item">Respuestas correctas: {{ respuestas_correctas }}</li>
+                    <li class="list-group-item">
+                        Calificación: 
+                        <span class="badge {% if calificacion >= 6 %}bg-success{% else %}bg-danger{% endif %}">
+                            {{ "%.2f"|format(calificacion) }}/10
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="mt-4">
+                <a href="{{ url_for('index') }}" class="btn btn-primary">Volver al Inicio</a>
+                <a href="{{ url_for('realizar_examen') }}" class="btn btn-success">Realizar Otro Examen</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

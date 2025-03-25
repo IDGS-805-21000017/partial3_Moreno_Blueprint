@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Buscar Alumno</h2>
+    <form method="POST" action="{{ url_for('realizar_examen') }}">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="apaterno">Apellido Paterno:</label>
+            <input type="text" class="form-control" id="apaterno" name="apaterno" required>
+        </div>
+        <div class="form-group">
+            <label for="grupo">Grupo:</label>
+            <select class="form-control" id="grupo" name="grupo" required>
+                <option value="">Seleccione un grupo</option>
+                <option value="IDGS801">IDGS801</option>
+                <option value="IDGS802">IDGS802</option>
+                <option value="IDGS803">IDGS803</option>
+                <option value="IDGS804">IDGS804</option>
+                <option value="IDGS805">IDGS805</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Buscar y Comenzar Examen</button>
+    </form>
+</div>
+
+{% if alumno %}
+<h2 class="mt-4">Datos del Alumno</h2>
+<p>Nombre: {{ alumno.nombre }} {{ alumno.apaterno }} {{ alumno.amaterno }}</p>
+<p>Grupo: {{ alumno.grupo }}</p>
+<p>Edad: {{ alumno.edad }}</p>
+
+<form method="POST">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+    {% for pregunta in preguntas %}
+        <div class="mt-4">
+            <p>{{ pregunta.pregunta }}</p>
+            <label>{{ pregunta.respuesta_a }} <input type="radio" name="respuesta_{{ pregunta.id }}" value="a"></label>
+            <label>{{ pregunta.respuesta_b }} <input type="radio" name="respuesta_{{ pregunta.id }}" value="b"></label>
+            <label>{{ pregunta.respuesta_c }} <input type="radio" name="respuesta_{{ pregunta.id }}" value="c"></label>
+            <label>{{ pregunta.respuesta_d }} <input type="radio" name="respuesta_{{ pregunta.id }}" value="d"></label>
+        </div>
+    {% endfor %}
+    <button type="submit" class="bg-blue-500 text-white p-2 rounded">Guardar Respuestas</button>
+</form>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Lista de Alumnos</h2>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Grupo</th>
+                <th>Edad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for alumno in alumnos %}
+            <tr>
+                <td>{{ alumno.id }}</td>
+                <td>{{ alumno.nombre }}</td>
+                <td>{{ alumno.apaterno }}</td>
+                <td>{{ alumno.amaterno }}</td>
+                <td>{{ alumno.grupo }}</td>
+                <td>{{ alumno.edad }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

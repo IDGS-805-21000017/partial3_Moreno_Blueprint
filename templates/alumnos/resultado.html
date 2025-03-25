@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Resultado del Examen</h2>
+            <div class="alert {% if calificacion >= 70 %}alert-success{% else %}alert-danger{% endif %}">
+                <h4>Calificación: {{ "%.2f"|format(calificacion) }}%</h4>
+                <p>Respuestas correctas: {{ respuestas_correctas }} de {{ total_preguntas }}</p>
+            </div>
+            <a href="{{ url_for('alumnos.inicio') }}" class="btn btn-primary">Volver al Inicio</a>
+        </div>
+    </div>
+</div>
+{% endblock %} 

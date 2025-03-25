@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Sistema de Exámenes</h2>
+    
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Alumnos</h5>
+                    <a href="{{ url_for('registro') }}" class="btn btn-primary">Registrar Nuevo Alumno</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Exámenes</h5>
+                    <a href="{{ url_for('examen') }}" class="btn btn-success">Agregar Pregunta</a>
+                    <a href="{{ url_for('realizar_examen') }}" class="btn btn-warning mt-2">Realizar Examen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <h3>Alumnos Registrados</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Grupo</th>
+                    <th>Edad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for alumno in alumnos %}
+                <tr>
+                    <td>{{ alumno.nombre }}</td>
+                    <td>{{ alumno.apaterno }}</td>
+                    <td>{{ alumno.amaterno }}</td>
+                    <td>{{ alumno.grupo }}</td>
+                    <td>{{ alumno.edad }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

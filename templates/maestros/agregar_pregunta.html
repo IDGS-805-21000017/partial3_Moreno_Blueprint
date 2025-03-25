@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Agregar Pregunta al Examen</h2>
+    <div class="card">
+        <div class="card-body">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="pregunta">Pregunta</label>
+                    <textarea class="form-control" id="pregunta" name="pregunta" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="respuesta_a">Respuesta A</label>
+                    <input type="text" class="form-control" id="respuesta_a" name="respuesta_a" required>
+                </div>
+                <div class="form-group">
+                    <label for="respuesta_b">Respuesta B</label>
+                    <input type="text" class="form-control" id="respuesta_b" name="respuesta_b" required>
+                </div>
+                <div class="form-group">
+                    <label for="respuesta_c">Respuesta C</label>
+                    <input type="text" class="form-control" id="respuesta_c" name="respuesta_c" required>
+                </div>
+                <div class="form-group">
+                    <label for="respuesta_d">Respuesta D</label>
+                    <input type="text" class="form-control" id="respuesta_d" name="respuesta_d" required>
+                </div>
+                <div class="form-group">
+                    <label for="respuesta_correcta">Respuesta Correcta</label>
+                    <select class="form-control" id="respuesta_correcta" name="respuesta_correcta" required>
+                        <option value="">Seleccione la respuesta correcta</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Agregar Pregunta</button>
+                <a href="{{ url_for('maestros.inicio') }}" class="btn btn-secondary">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %} 

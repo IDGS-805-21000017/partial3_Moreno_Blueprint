@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        Examen para: {{ alumno.nombre }} {{ alumno.apaterno }} {{ alumno.amaterno }}
+    </div>
+    <div class="card-body">
+        <form method="POST" action="{{ url_for('exam.calificar_examen') }}">
+            <input type="hidden" name="alumno_id" value="{{ alumno.id }}">
+            {% for pregunta in preguntas %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ pregunta.pregunta }}</h5>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="respuesta_{{ pregunta.id }}" value="A" required>
+                        <label class="form-check-label">A) {{ pregunta.respuesta_a }}</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="respuesta_{{ pregunta.id }}" value="B">
+                        <label class="form-check-label">B) {{ pregunta.respuesta_b }}</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="respuesta_{{ pregunta.id }}" value="C">
+                        <label class="form-check-label">C) {{ pregunta.respuesta_c }}</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="respuesta_{{ pregunta.id }}" value="D">
+                        <label class="form-check-label">D) {{ pregunta.respuesta_d }}</label>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Enviar Examen</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
